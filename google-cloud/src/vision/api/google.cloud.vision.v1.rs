@@ -3,10 +3,10 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Vertex {
     /// X coordinate.
-    #[prost(int32, tag = "1")]
+    #[prost(int32, tag="1")]
     pub x: i32,
     /// Y coordinate.
-    #[prost(int32, tag = "2")]
+    #[prost(int32, tag="2")]
     pub y: i32,
 }
 /// A vertex represents a 2D point in the image.
@@ -15,20 +15,20 @@ pub struct Vertex {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NormalizedVertex {
     /// X coordinate.
-    #[prost(float, tag = "1")]
+    #[prost(float, tag="1")]
     pub x: f32,
     /// Y coordinate.
-    #[prost(float, tag = "2")]
+    #[prost(float, tag="2")]
     pub y: f32,
 }
 /// A bounding polygon for the detected image annotation.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BoundingPoly {
     /// The bounding polygon vertices.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub vertices: ::prost::alloc::vec::Vec<Vertex>,
     /// The bounding polygon normalized vertices.
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag="2")]
     pub normalized_vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
 }
 /// A 3D position in the image, used primarily for Face detection landmarks.
@@ -37,13 +37,13 @@ pub struct BoundingPoly {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Position {
     /// X coordinate.
-    #[prost(float, tag = "1")]
+    #[prost(float, tag="1")]
     pub x: f32,
     /// Y coordinate.
-    #[prost(float, tag = "2")]
+    #[prost(float, tag="2")]
     pub y: f32,
     /// Z coordinate (or depth).
-    #[prost(float, tag = "3")]
+    #[prost(float, tag="3")]
     pub z: f32,
 }
 /// A Product contains ReferenceImages.
@@ -55,21 +55,21 @@ pub struct Product {
     /// `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
     ///
     /// This field is ignored when creating a product.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
     /// The user-provided name for this Product. Must not be empty. Must be at most
     /// 4096 characters long.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub display_name: ::prost::alloc::string::String,
     /// User-provided metadata to be stored with this product. Must be at most 4096
     /// characters long.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub description: ::prost::alloc::string::String,
     /// Immutable. The category for the product identified by the reference image. This should
     /// be either "homegoods-v2", "apparel-v2", or "toys-v2". The legacy categories
     /// "homegoods", "apparel", and "toys" are still supported, but these should
     /// not be used for new products.
-    #[prost(string, tag = "4")]
+    #[prost(string, tag="4")]
     pub product_category: ::prost::alloc::string::String,
     /// Key-value pairs that can be attached to a product. At query time,
     /// constraints can be specified based on the product_labels.
@@ -84,7 +84,7 @@ pub struct Product {
     /// Notice that the total number of distinct product_labels over all products
     /// in one ProductSet cannot exceed 1M, otherwise the product search pipeline
     /// will refuse to work for that ProductSet.
-    #[prost(message, repeated, tag = "5")]
+    #[prost(message, repeated, tag="5")]
     pub product_labels: ::prost::alloc::vec::Vec<product::KeyValue>,
 }
 /// Nested message and enum types in `Product`.
@@ -94,11 +94,11 @@ pub mod product {
     pub struct KeyValue {
         /// The key of the label attached to the product. Cannot be empty and cannot
         /// exceed 128 bytes.
-        #[prost(string, tag = "1")]
+        #[prost(string, tag="1")]
         pub key: ::prost::alloc::string::String,
         /// The value of the label attached to the product. Cannot be empty and
         /// cannot exceed 128 bytes.
-        #[prost(string, tag = "2")]
+        #[prost(string, tag="2")]
         pub value: ::prost::alloc::string::String,
     }
 }
@@ -113,11 +113,11 @@ pub struct ProductSet {
     /// `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
     ///
     /// This field is ignored when creating a ProductSet.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
     /// The user-provided name for this ProductSet. Must not be empty. Must be at
     /// most 4096 characters long.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub display_name: ::prost::alloc::string::String,
     /// Output only. The time at which this ProductSet was last indexed. Query
     /// results will reflect all updates before this time. If this ProductSet has
@@ -125,13 +125,13 @@ pub struct ProductSet {
     /// "1970-01-01T00:00:00Z".
     ///
     /// This field is ignored when creating a ProductSet.
-    #[prost(message, optional, tag = "3")]
+    #[prost(message, optional, tag="3")]
     pub index_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Output only. If there was an error with indexing the product set, the field
     /// is populated.
     ///
     /// This field is ignored when creating a ProductSet.
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag="4")]
     pub index_error: ::core::option::Option<super::super::super::rpc::Status>,
 }
 /// A `ReferenceImage` represents a product image and its associated metadata,
@@ -145,12 +145,12 @@ pub struct ReferenceImage {
     /// `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
     ///
     /// This field is ignored when creating a reference image.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The Google Cloud Storage URI of the reference image.
     ///
     /// The URI must start with `gs://`.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub uri: ::prost::alloc::string::String,
     /// Optional. Bounding polygons around the areas of interest in the reference image.
     /// If this field is empty, the system will try to detect regions of
@@ -160,7 +160,7 @@ pub struct ReferenceImage {
     /// converted, the small edge of the rectangle must be greater than or equal
     /// to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5
     /// is not).
-    #[prost(message, repeated, tag = "3")]
+    #[prost(message, repeated, tag="3")]
     pub bounding_polys: ::prost::alloc::vec::Vec<BoundingPoly>,
 }
 /// Request message for the `CreateProduct` method.
@@ -170,16 +170,16 @@ pub struct CreateProductRequest {
     ///
     /// Format is
     /// `projects/PROJECT_ID/locations/LOC_ID`.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The product to create.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub product: ::core::option::Option<Product>,
     /// A user-supplied resource id for this Product. If set, the server will
     /// attempt to use this value as the resource id. If it is already in use, an
     /// error is returned with code ALREADY_EXISTS. Must be at most 128 characters
     /// long. It cannot contain the character `/`.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub product_id: ::prost::alloc::string::String,
 }
 /// Request message for the `ListProducts` method.
@@ -189,24 +189,24 @@ pub struct ListProductsRequest {
     ///
     /// Format:
     /// `projects/PROJECT_ID/locations/LOC_ID`
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub parent: ::prost::alloc::string::String,
     /// The maximum number of items to return. Default 10, maximum 100.
-    #[prost(int32, tag = "2")]
+    #[prost(int32, tag="2")]
     pub page_size: i32,
     /// The next_page_token returned from a previous List request, if any.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for the `ListProducts` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProductsResponse {
     /// List of products.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub products: ::prost::alloc::vec::Vec<Product>,
     /// Token to retrieve the next page of results, or empty if there are no more
     /// results in the list.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for the `GetProduct` method.
@@ -216,7 +216,7 @@ pub struct GetProductRequest {
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for the `UpdateProduct` method.
@@ -224,14 +224,14 @@ pub struct GetProductRequest {
 pub struct UpdateProductRequest {
     /// Required. The Product resource which replaces the one on the server.
     /// product.name is immutable.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub product: ::core::option::Option<Product>,
     /// The [FieldMask][google.protobuf.FieldMask] that specifies which fields
     /// to update.
     /// If update_mask isn't specified, all mutable fields are to be updated.
     /// Valid mask paths include `product_labels`, `display_name`, and
     /// `description`.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for the `DeleteProduct` method.
@@ -241,7 +241,7 @@ pub struct DeleteProductRequest {
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for the `CreateProductSet` method.
@@ -250,16 +250,16 @@ pub struct CreateProductSetRequest {
     /// Required. The project in which the ProductSet should be created.
     ///
     /// Format is `projects/PROJECT_ID/locations/LOC_ID`.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The ProductSet to create.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub product_set: ::core::option::Option<ProductSet>,
     /// A user-supplied resource id for this ProductSet. If set, the server will
     /// attempt to use this value as the resource id. If it is already in use, an
     /// error is returned with code ALREADY_EXISTS. Must be at most 128 characters
     /// long. It cannot contain the character `/`.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub product_set_id: ::prost::alloc::string::String,
 }
 /// Request message for the `ListProductSets` method.
@@ -268,24 +268,24 @@ pub struct ListProductSetsRequest {
     /// Required. The project from which ProductSets should be listed.
     ///
     /// Format is `projects/PROJECT_ID/locations/LOC_ID`.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub parent: ::prost::alloc::string::String,
     /// The maximum number of items to return. Default 10, maximum 100.
-    #[prost(int32, tag = "2")]
+    #[prost(int32, tag="2")]
     pub page_size: i32,
     /// The next_page_token returned from a previous List request, if any.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for the `ListProductSets` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProductSetsResponse {
     /// List of ProductSets.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub product_sets: ::prost::alloc::vec::Vec<ProductSet>,
     /// Token to retrieve the next page of results, or empty if there are no more
     /// results in the list.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for the `GetProductSet` method.
@@ -295,20 +295,20 @@ pub struct GetProductSetRequest {
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for the `UpdateProductSet` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateProductSetRequest {
     /// Required. The ProductSet resource which replaces the one on the server.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub product_set: ::core::option::Option<ProductSet>,
     /// The [FieldMask][google.protobuf.FieldMask] that specifies which fields to
     /// update.
     /// If update_mask isn't specified, all mutable fields are to be updated.
     /// Valid mask path is `display_name`.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for the `DeleteProductSet` method.
@@ -318,7 +318,7 @@ pub struct DeleteProductSetRequest {
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for the `CreateReferenceImage` method.
@@ -328,17 +328,17 @@ pub struct CreateReferenceImageRequest {
     ///
     /// Format is
     /// `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The reference image to create.
     /// If an image ID is specified, it is ignored.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub reference_image: ::core::option::Option<ReferenceImage>,
     /// A user-supplied resource id for the ReferenceImage to be added. If set,
     /// the server will attempt to use this value as the resource id. If it is
     /// already in use, an error is returned with code ALREADY_EXISTS. Must be at
     /// most 128 characters long. It cannot contain the character `/`.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub reference_image_id: ::prost::alloc::string::String,
 }
 /// Request message for the `ListReferenceImages` method.
@@ -348,29 +348,29 @@ pub struct ListReferenceImagesRequest {
     ///
     /// Format is
     /// `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub parent: ::prost::alloc::string::String,
     /// The maximum number of items to return. Default 10, maximum 100.
-    #[prost(int32, tag = "2")]
+    #[prost(int32, tag="2")]
     pub page_size: i32,
     /// A token identifying a page of results to be returned. This is the value
     /// of `nextPageToken` returned in a previous reference image list request.
     ///
     /// Defaults to the first page if not specified.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for the `ListReferenceImages` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListReferenceImagesResponse {
     /// The list of reference images.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub reference_images: ::prost::alloc::vec::Vec<ReferenceImage>,
     /// The maximum number of items to return. Default 10, maximum 100.
-    #[prost(int32, tag = "2")]
+    #[prost(int32, tag="2")]
     pub page_size: i32,
     /// The next_page_token returned from a previous List request, if any.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for the `GetReferenceImage` method.
@@ -381,7 +381,7 @@ pub struct GetReferenceImageRequest {
     /// Format is:
     ///
     /// `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for the `DeleteReferenceImage` method.
@@ -392,7 +392,7 @@ pub struct DeleteReferenceImageRequest {
     /// Format is:
     ///
     /// `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for the `AddProductToProductSet` method.
@@ -402,13 +402,13 @@ pub struct AddProductToProductSetRequest {
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The resource name for the Product to be added to this ProductSet.
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub product: ::prost::alloc::string::String,
 }
 /// Request message for the `RemoveProductFromProductSet` method.
@@ -418,13 +418,13 @@ pub struct RemoveProductFromProductSetRequest {
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The resource name for the Product to be removed from this ProductSet.
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub product: ::prost::alloc::string::String,
 }
 /// Request message for the `ListProductsInProductSet` method.
@@ -434,24 +434,24 @@ pub struct ListProductsInProductSetRequest {
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
     /// The maximum number of items to return. Default 10, maximum 100.
-    #[prost(int32, tag = "2")]
+    #[prost(int32, tag="2")]
     pub page_size: i32,
     /// The next_page_token returned from a previous List request, if any.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for the `ListProductsInProductSet` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProductsInProductSetResponse {
     /// The list of Products.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub products: ::prost::alloc::vec::Vec<Product>,
     /// Token to retrieve the next page of results, or empty if there are no more
     /// results in the list.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The Google Cloud Storage location for a csv file which preserves a list of
@@ -519,14 +519,14 @@ pub struct ImportProductSetsGcsSource {
     ///
     /// The system will resize the image if the image resolution is too
     /// large to process (larger than 20MP).
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub csv_file_uri: ::prost::alloc::string::String,
 }
 /// The input content for the `ImportProductSets` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportProductSetsInputConfig {
     /// The source of the input.
-    #[prost(oneof = "import_product_sets_input_config::Source", tags = "1")]
+    #[prost(oneof="import_product_sets_input_config::Source", tags="1")]
     pub source: ::core::option::Option<import_product_sets_input_config::Source>,
 }
 /// Nested message and enum types in `ImportProductSetsInputConfig`.
@@ -536,7 +536,7 @@ pub mod import_product_sets_input_config {
     pub enum Source {
         /// The Google Cloud Storage location for a csv file which preserves a list
         /// of ImportProductSetRequests in each line.
-        #[prost(message, tag = "1")]
+        #[prost(message, tag="1")]
         GcsSource(super::ImportProductSetsGcsSource),
     }
 }
@@ -546,10 +546,10 @@ pub struct ImportProductSetsRequest {
     /// Required. The project in which the ProductSets should be imported.
     ///
     /// Format is `projects/PROJECT_ID/locations/LOC_ID`.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The input content for the list of requests.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub input_config: ::core::option::Option<ImportProductSetsInputConfig>,
 }
 /// Response message for the `ImportProductSets` method.
@@ -560,7 +560,7 @@ pub struct ImportProductSetsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportProductSetsResponse {
     /// The list of reference_images that are imported successfully.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub reference_images: ::prost::alloc::vec::Vec<ReferenceImage>,
     /// The rpc status for each ImportProductSet request, including both successes
     /// and errors.
@@ -568,7 +568,7 @@ pub struct ImportProductSetsResponse {
     /// The number of statuses here matches the number of lines in the csv file,
     /// and statuses[i] stores the success or failure status of processing the i-th
     /// line of the csv, starting from line 0.
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag="2")]
     pub statuses: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
 }
 /// Metadata for the batch operations such as the current state.
@@ -578,14 +578,14 @@ pub struct ImportProductSetsResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchOperationMetadata {
     /// The current state of the batch operation.
-    #[prost(enumeration = "batch_operation_metadata::State", tag = "1")]
+    #[prost(enumeration="batch_operation_metadata::State", tag="1")]
     pub state: i32,
     /// The time when the batch request was submitted to the server.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub submit_time: ::core::option::Option<::prost_types::Timestamp>,
     /// The time when the batch request is finished and
     /// [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to true.
-    #[prost(message, optional, tag = "3")]
+    #[prost(message, optional, tag="3")]
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `BatchOperationMetadata`.
@@ -615,7 +615,7 @@ pub struct ProductSetPurgeConfig {
     /// The ProductSet that contains the Products to delete. If a Product is a
     /// member of product_set_id in addition to other ProductSets, the Product will
     /// still be deleted.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub product_set_id: ::prost::alloc::string::String,
 }
 /// Request message for the `PurgeProducts` method.
@@ -624,14 +624,14 @@ pub struct PurgeProductsRequest {
     /// Required. The project and location in which the Products should be deleted.
     ///
     /// Format is `projects/PROJECT_ID/locations/LOC_ID`.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub parent: ::prost::alloc::string::String,
     /// The default value is false. Override this value to true to actually perform
     /// the purge.
-    #[prost(bool, tag = "4")]
+    #[prost(bool, tag="4")]
     pub force: bool,
     /// The Products to delete.
-    #[prost(oneof = "purge_products_request::Target", tags = "2, 3")]
+    #[prost(oneof="purge_products_request::Target", tags="2, 3")]
     pub target: ::core::option::Option<purge_products_request::Target>,
 }
 /// Nested message and enum types in `PurgeProductsRequest`.
@@ -640,554 +640,26 @@ pub mod purge_products_request {
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Target {
         /// Specify which ProductSet contains the Products to be deleted.
-        #[prost(message, tag = "2")]
+        #[prost(message, tag="2")]
         ProductSetPurgeConfig(super::ProductSetPurgeConfig),
         /// If delete_orphan_products is true, all Products that are not in any
         /// ProductSet will be deleted.
-        #[prost(bool, tag = "3")]
+        #[prost(bool, tag="3")]
         DeleteOrphanProducts(bool),
     }
 }
-#[doc = r" Generated client implementations."]
-pub mod product_search_client {
-    #![allow(unused_variables, dead_code, missing_docs)]
-    use tonic::codegen::*;
-    #[doc = " Manages Products and ProductSets of reference images for use in product"]
-    #[doc = " search. It uses the following resource model:"]
-    #[doc = ""]
-    #[doc = " - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet] resources, named"]
-    #[doc = " `projects/*/locations/*/productSets/*`, which acts as a way to put different"]
-    #[doc = " products into groups to limit identification."]
-    #[doc = ""]
-    #[doc = " In parallel,"]
-    #[doc = ""]
-    #[doc = " - The API has a collection of [Product][google.cloud.vision.v1.Product] resources, named"]
-    #[doc = "   `projects/*/locations/*/products/*`"]
-    #[doc = ""]
-    #[doc = " - Each [Product][google.cloud.vision.v1.Product] has a collection of [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named"]
-    #[doc = "   `projects/*/locations/*/products/*/referenceImages/*`"]
-    pub struct ProductSearchClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl ProductSearchClient<tonic::transport::Channel> {
-        #[doc = r" Attempt to create a new client by connecting to a given endpoint."]
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: std::convert::TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
-    impl<T> ProductSearchClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::ResponseBody: Body + HttpBody + Send + 'static,
-        T::Error: Into<StdError>,
-        <T::ResponseBody as HttpBody>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_interceptor(inner: T, interceptor: impl Into<tonic::Interceptor>) -> Self {
-            let inner = tonic::client::Grpc::with_interceptor(inner, interceptor);
-            Self { inner }
-        }
-        #[doc = " Creates and returns a new ProductSet resource."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns INVALID_ARGUMENT if display_name is missing, or is longer than"]
-        #[doc = "   4096 characters."]
-        pub async fn create_product_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateProductSetRequest>,
-        ) -> Result<tonic::Response<super::ProductSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/CreateProductSet",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Lists ProductSets in an unspecified order."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns INVALID_ARGUMENT if page_size is greater than 100, or less"]
-        #[doc = "   than 1."]
-        pub async fn list_product_sets(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListProductSetsRequest>,
-        ) -> Result<tonic::Response<super::ListProductSetsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/ListProductSets",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Gets information associated with a ProductSet."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns NOT_FOUND if the ProductSet does not exist."]
-        pub async fn get_product_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetProductSetRequest>,
-        ) -> Result<tonic::Response<super::ProductSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/GetProductSet",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Makes changes to a ProductSet resource."]
-        #[doc = " Only display_name can be updated currently."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns NOT_FOUND if the ProductSet does not exist."]
-        #[doc = " * Returns INVALID_ARGUMENT if display_name is present in update_mask but"]
-        #[doc = "   missing from the request or longer than 4096 characters."]
-        pub async fn update_product_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateProductSetRequest>,
-        ) -> Result<tonic::Response<super::ProductSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/UpdateProductSet",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Permanently deletes a ProductSet. Products and ReferenceImages in the"]
-        #[doc = " ProductSet are not deleted."]
-        #[doc = ""]
-        #[doc = " The actual image files are not deleted from Google Cloud Storage."]
-        pub async fn delete_product_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteProductSetRequest>,
-        ) -> Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/DeleteProductSet",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Creates and returns a new product resource."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096"]
-        #[doc = "   characters."]
-        #[doc = " * Returns INVALID_ARGUMENT if description is longer than 4096 characters."]
-        #[doc = " * Returns INVALID_ARGUMENT if product_category is missing or invalid."]
-        pub async fn create_product(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateProductRequest>,
-        ) -> Result<tonic::Response<super::Product>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/CreateProduct",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Lists products in an unspecified order."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1."]
-        pub async fn list_products(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListProductsRequest>,
-        ) -> Result<tonic::Response<super::ListProductsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/ListProducts",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Gets information associated with a Product."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns NOT_FOUND if the Product does not exist."]
-        pub async fn get_product(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetProductRequest>,
-        ) -> Result<tonic::Response<super::Product>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/GetProduct",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Makes changes to a Product resource."]
-        #[doc = " Only the `display_name`, `description`, and `labels` fields can be updated"]
-        #[doc = " right now."]
-        #[doc = ""]
-        #[doc = " If labels are updated, the change will not be reflected in queries until"]
-        #[doc = " the next index time."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns NOT_FOUND if the Product does not exist."]
-        #[doc = " * Returns INVALID_ARGUMENT if display_name is present in update_mask but is"]
-        #[doc = "   missing from the request or longer than 4096 characters."]
-        #[doc = " * Returns INVALID_ARGUMENT if description is present in update_mask but is"]
-        #[doc = "   longer than 4096 characters."]
-        #[doc = " * Returns INVALID_ARGUMENT if product_category is present in update_mask."]
-        pub async fn update_product(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateProductRequest>,
-        ) -> Result<tonic::Response<super::Product>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/UpdateProduct",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Permanently deletes a product and its reference images."]
-        #[doc = ""]
-        #[doc = " Metadata of the product and all its images will be deleted right away, but"]
-        #[doc = " search queries against ProductSets containing the product may still work"]
-        #[doc = " until all related caches are refreshed."]
-        pub async fn delete_product(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteProductRequest>,
-        ) -> Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/DeleteProduct",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Creates and returns a new ReferenceImage resource."]
-        #[doc = ""]
-        #[doc = " The `bounding_poly` field is optional. If `bounding_poly` is not specified,"]
-        #[doc = " the system will try to detect regions of interest in the image that are"]
-        #[doc = " compatible with the product_category on the parent product. If it is"]
-        #[doc = " specified, detection is ALWAYS skipped. The system converts polygons into"]
-        #[doc = " non-rotated rectangles."]
-        #[doc = ""]
-        #[doc = " Note that the pipeline will resize the image if the image resolution is too"]
-        #[doc = " large to process (above 50MP)."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096"]
-        #[doc = "   characters."]
-        #[doc = " * Returns INVALID_ARGUMENT if the product does not exist."]
-        #[doc = " * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing"]
-        #[doc = "   compatible with the parent product's product_category is detected."]
-        #[doc = " * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons."]
-        pub async fn create_reference_image(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateReferenceImageRequest>,
-        ) -> Result<tonic::Response<super::ReferenceImage>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/CreateReferenceImage",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Permanently deletes a reference image."]
-        #[doc = ""]
-        #[doc = " The image metadata will be deleted right away, but search queries"]
-        #[doc = " against ProductSets containing the image may still work until all related"]
-        #[doc = " caches are refreshed."]
-        #[doc = ""]
-        #[doc = " The actual image files are not deleted from Google Cloud Storage."]
-        pub async fn delete_reference_image(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteReferenceImageRequest>,
-        ) -> Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/DeleteReferenceImage",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Lists reference images."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns NOT_FOUND if the parent product does not exist."]
-        #[doc = " * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less"]
-        #[doc = "   than 1."]
-        pub async fn list_reference_images(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListReferenceImagesRequest>,
-        ) -> Result<tonic::Response<super::ListReferenceImagesResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/ListReferenceImages",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Gets information associated with a ReferenceImage."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns NOT_FOUND if the specified image does not exist."]
-        pub async fn get_reference_image(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetReferenceImageRequest>,
-        ) -> Result<tonic::Response<super::ReferenceImage>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/GetReferenceImage",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Adds a Product to the specified ProductSet. If the Product is already"]
-        #[doc = " present, no change is made."]
-        #[doc = ""]
-        #[doc = " One Product can be added to at most 100 ProductSets."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns NOT_FOUND if the Product or the ProductSet doesn't exist."]
-        pub async fn add_product_to_product_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AddProductToProductSetRequest>,
-        ) -> Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/AddProductToProductSet",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Removes a Product from the specified ProductSet."]
-        pub async fn remove_product_from_product_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RemoveProductFromProductSetRequest>,
-        ) -> Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/RemoveProductFromProductSet",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Lists the Products in a ProductSet, in an unspecified order. If the"]
-        #[doc = " ProductSet does not exist, the products field of the response will be"]
-        #[doc = " empty."]
-        #[doc = ""]
-        #[doc = " Possible errors:"]
-        #[doc = ""]
-        #[doc = " * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1."]
-        pub async fn list_products_in_product_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListProductsInProductSetRequest>,
-        ) -> Result<tonic::Response<super::ListProductsInProductSetResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/ListProductsInProductSet",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Asynchronous API that imports a list of reference images to specified"]
-        #[doc = " product sets based on a list of image information."]
-        #[doc = ""]
-        #[doc = " The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the"]
-        #[doc = " progress and results of the request."]
-        #[doc = " `Operation.metadata` contains `BatchOperationMetadata`. (progress)"]
-        #[doc = " `Operation.response` contains `ImportProductSetsResponse`. (results)"]
-        #[doc = ""]
-        #[doc = " The input source of this method is a csv file on Google Cloud Storage."]
-        #[doc = " For the format of the csv file please see"]
-        #[doc = " [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri]."]
-        pub async fn import_product_sets(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ImportProductSetsRequest>,
-        ) -> Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/ImportProductSets",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Asynchronous API to delete all Products in a ProductSet or all Products"]
-        #[doc = " that are in no ProductSet."]
-        #[doc = ""]
-        #[doc = " If a Product is a member of the specified ProductSet in addition to other"]
-        #[doc = " ProductSets, the Product will still be deleted."]
-        #[doc = ""]
-        #[doc = " It is recommended to not delete the specified ProductSet until after this"]
-        #[doc = " operation has completed. It is also recommended to not add any of the"]
-        #[doc = " Products involved in the batch delete to a new ProductSet while this"]
-        #[doc = " operation is running because those Products may still end up deleted."]
-        #[doc = ""]
-        #[doc = " It's not possible to undo the PurgeProducts operation. Therefore, it is"]
-        #[doc = " recommended to keep the csv files used in ImportProductSets (if that was"]
-        #[doc = " how you originally built the Product Set) before starting PurgeProducts, in"]
-        #[doc = " case you need to re-import the data after deletion."]
-        #[doc = ""]
-        #[doc = " If the plan is to purge all of the Products from a ProductSet and then"]
-        #[doc = " re-use the empty ProductSet to re-import new Products into the empty"]
-        #[doc = " ProductSet, you must wait until the PurgeProducts operation has finished"]
-        #[doc = " for that ProductSet."]
-        #[doc = ""]
-        #[doc = " The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the"]
-        #[doc = " progress and results of the request."]
-        #[doc = " `Operation.metadata` contains `BatchOperationMetadata`. (progress)"]
-        pub async fn purge_products(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PurgeProductsRequest>,
-        ) -> Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ProductSearch/PurgeProducts",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-    }
-    impl<T: Clone> Clone for ProductSearchClient<T> {
-        fn clone(&self) -> Self {
-            Self {
-                inner: self.inner.clone(),
-            }
-        }
-    }
-    impl<T> std::fmt::Debug for ProductSearchClient<T> {
-        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-            write!(f, "ProductSearchClient {{ ... }}")
-        }
-    }
-}
-/// Parameters for a product search request.
+# [doc = r" Generated client implementations."] pub mod product_search_client { # ! [allow (unused_variables , dead_code , missing_docs)] use tonic :: codegen :: * ; # [doc = " Manages Products and ProductSets of reference images for use in product"] # [doc = " search. It uses the following resource model:"] # [doc = ""] # [doc = " - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet] resources, named"] # [doc = " `projects/*/locations/*/productSets/*`, which acts as a way to put different"] # [doc = " products into groups to limit identification."] # [doc = ""] # [doc = " In parallel,"] # [doc = ""] # [doc = " - The API has a collection of [Product][google.cloud.vision.v1.Product] resources, named"] # [doc = "   `projects/*/locations/*/products/*`"] # [doc = ""] # [doc = " - Each [Product][google.cloud.vision.v1.Product] has a collection of [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named"] # [doc = "   `projects/*/locations/*/products/*/referenceImages/*`"] pub struct ProductSearchClient < T > { inner : tonic :: client :: Grpc < T > , } impl < T > ProductSearchClient < T > where T : tonic :: client :: GrpcService < tonic :: body :: BoxBody > , T :: ResponseBody : Body + HttpBody + Send + 'static , T :: Error : Into < StdError > , < T :: ResponseBody as HttpBody > :: Error : Into < StdError > + Send , { pub fn new (inner : T) -> Self { let inner = tonic :: client :: Grpc :: new (inner) ; Self { inner } } pub fn with_interceptor (inner : T , interceptor : impl Into < tonic :: Interceptor >) -> Self { let inner = tonic :: client :: Grpc :: with_interceptor (inner , interceptor) ; Self { inner } } # [doc = " Creates and returns a new ProductSet resource."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns INVALID_ARGUMENT if display_name is missing, or is longer than"] # [doc = "   4096 characters."] pub async fn create_product_set (& mut self , request : impl tonic :: IntoRequest < super :: CreateProductSetRequest > ,) -> Result < tonic :: Response < super :: ProductSet > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/CreateProductSet") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Lists ProductSets in an unspecified order."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns INVALID_ARGUMENT if page_size is greater than 100, or less"] # [doc = "   than 1."] pub async fn list_product_sets (& mut self , request : impl tonic :: IntoRequest < super :: ListProductSetsRequest > ,) -> Result < tonic :: Response < super :: ListProductSetsResponse > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/ListProductSets") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Gets information associated with a ProductSet."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns NOT_FOUND if the ProductSet does not exist."] pub async fn get_product_set (& mut self , request : impl tonic :: IntoRequest < super :: GetProductSetRequest > ,) -> Result < tonic :: Response < super :: ProductSet > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/GetProductSet") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Makes changes to a ProductSet resource."] # [doc = " Only display_name can be updated currently."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns NOT_FOUND if the ProductSet does not exist."] # [doc = " * Returns INVALID_ARGUMENT if display_name is present in update_mask but"] # [doc = "   missing from the request or longer than 4096 characters."] pub async fn update_product_set (& mut self , request : impl tonic :: IntoRequest < super :: UpdateProductSetRequest > ,) -> Result < tonic :: Response < super :: ProductSet > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/UpdateProductSet") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Permanently deletes a ProductSet. Products and ReferenceImages in the"] # [doc = " ProductSet are not deleted."] # [doc = ""] # [doc = " The actual image files are not deleted from Google Cloud Storage."] pub async fn delete_product_set (& mut self , request : impl tonic :: IntoRequest < super :: DeleteProductSetRequest > ,) -> Result < tonic :: Response < () > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/DeleteProductSet") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Creates and returns a new product resource."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096"] # [doc = "   characters."] # [doc = " * Returns INVALID_ARGUMENT if description is longer than 4096 characters."] # [doc = " * Returns INVALID_ARGUMENT if product_category is missing or invalid."] pub async fn create_product (& mut self , request : impl tonic :: IntoRequest < super :: CreateProductRequest > ,) -> Result < tonic :: Response < super :: Product > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/CreateProduct") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Lists products in an unspecified order."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1."] pub async fn list_products (& mut self , request : impl tonic :: IntoRequest < super :: ListProductsRequest > ,) -> Result < tonic :: Response < super :: ListProductsResponse > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/ListProducts") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Gets information associated with a Product."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns NOT_FOUND if the Product does not exist."] pub async fn get_product (& mut self , request : impl tonic :: IntoRequest < super :: GetProductRequest > ,) -> Result < tonic :: Response < super :: Product > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/GetProduct") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Makes changes to a Product resource."] # [doc = " Only the `display_name`, `description`, and `labels` fields can be updated"] # [doc = " right now."] # [doc = ""] # [doc = " If labels are updated, the change will not be reflected in queries until"] # [doc = " the next index time."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns NOT_FOUND if the Product does not exist."] # [doc = " * Returns INVALID_ARGUMENT if display_name is present in update_mask but is"] # [doc = "   missing from the request or longer than 4096 characters."] # [doc = " * Returns INVALID_ARGUMENT if description is present in update_mask but is"] # [doc = "   longer than 4096 characters."] # [doc = " * Returns INVALID_ARGUMENT if product_category is present in update_mask."] pub async fn update_product (& mut self , request : impl tonic :: IntoRequest < super :: UpdateProductRequest > ,) -> Result < tonic :: Response < super :: Product > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/UpdateProduct") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Permanently deletes a product and its reference images."] # [doc = ""] # [doc = " Metadata of the product and all its images will be deleted right away, but"] # [doc = " search queries against ProductSets containing the product may still work"] # [doc = " until all related caches are refreshed."] pub async fn delete_product (& mut self , request : impl tonic :: IntoRequest < super :: DeleteProductRequest > ,) -> Result < tonic :: Response < () > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/DeleteProduct") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Creates and returns a new ReferenceImage resource."] # [doc = ""] # [doc = " The `bounding_poly` field is optional. If `bounding_poly` is not specified,"] # [doc = " the system will try to detect regions of interest in the image that are"] # [doc = " compatible with the product_category on the parent product. If it is"] # [doc = " specified, detection is ALWAYS skipped. The system converts polygons into"] # [doc = " non-rotated rectangles."] # [doc = ""] # [doc = " Note that the pipeline will resize the image if the image resolution is too"] # [doc = " large to process (above 50MP)."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096"] # [doc = "   characters."] # [doc = " * Returns INVALID_ARGUMENT if the product does not exist."] # [doc = " * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing"] # [doc = "   compatible with the parent product's product_category is detected."] # [doc = " * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons."] pub async fn create_reference_image (& mut self , request : impl tonic :: IntoRequest < super :: CreateReferenceImageRequest > ,) -> Result < tonic :: Response < super :: ReferenceImage > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/CreateReferenceImage") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Permanently deletes a reference image."] # [doc = ""] # [doc = " The image metadata will be deleted right away, but search queries"] # [doc = " against ProductSets containing the image may still work until all related"] # [doc = " caches are refreshed."] # [doc = ""] # [doc = " The actual image files are not deleted from Google Cloud Storage."] pub async fn delete_reference_image (& mut self , request : impl tonic :: IntoRequest < super :: DeleteReferenceImageRequest > ,) -> Result < tonic :: Response < () > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/DeleteReferenceImage") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Lists reference images."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns NOT_FOUND if the parent product does not exist."] # [doc = " * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less"] # [doc = "   than 1."] pub async fn list_reference_images (& mut self , request : impl tonic :: IntoRequest < super :: ListReferenceImagesRequest > ,) -> Result < tonic :: Response < super :: ListReferenceImagesResponse > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/ListReferenceImages") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Gets information associated with a ReferenceImage."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns NOT_FOUND if the specified image does not exist."] pub async fn get_reference_image (& mut self , request : impl tonic :: IntoRequest < super :: GetReferenceImageRequest > ,) -> Result < tonic :: Response < super :: ReferenceImage > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/GetReferenceImage") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Adds a Product to the specified ProductSet. If the Product is already"] # [doc = " present, no change is made."] # [doc = ""] # [doc = " One Product can be added to at most 100 ProductSets."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns NOT_FOUND if the Product or the ProductSet doesn't exist."] pub async fn add_product_to_product_set (& mut self , request : impl tonic :: IntoRequest < super :: AddProductToProductSetRequest > ,) -> Result < tonic :: Response < () > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/AddProductToProductSet") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Removes a Product from the specified ProductSet."] pub async fn remove_product_from_product_set (& mut self , request : impl tonic :: IntoRequest < super :: RemoveProductFromProductSetRequest > ,) -> Result < tonic :: Response < () > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/RemoveProductFromProductSet") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Lists the Products in a ProductSet, in an unspecified order. If the"] # [doc = " ProductSet does not exist, the products field of the response will be"] # [doc = " empty."] # [doc = ""] # [doc = " Possible errors:"] # [doc = ""] # [doc = " * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1."] pub async fn list_products_in_product_set (& mut self , request : impl tonic :: IntoRequest < super :: ListProductsInProductSetRequest > ,) -> Result < tonic :: Response < super :: ListProductsInProductSetResponse > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/ListProductsInProductSet") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Asynchronous API that imports a list of reference images to specified"] # [doc = " product sets based on a list of image information."] # [doc = ""] # [doc = " The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the"] # [doc = " progress and results of the request."] # [doc = " `Operation.metadata` contains `BatchOperationMetadata`. (progress)"] # [doc = " `Operation.response` contains `ImportProductSetsResponse`. (results)"] # [doc = ""] # [doc = " The input source of this method is a csv file on Google Cloud Storage."] # [doc = " For the format of the csv file please see"] # [doc = " [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri]."] pub async fn import_product_sets (& mut self , request : impl tonic :: IntoRequest < super :: ImportProductSetsRequest > ,) -> Result < tonic :: Response < super :: super :: super :: super :: longrunning :: Operation > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/ImportProductSets") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Asynchronous API to delete all Products in a ProductSet or all Products"] # [doc = " that are in no ProductSet."] # [doc = ""] # [doc = " If a Product is a member of the specified ProductSet in addition to other"] # [doc = " ProductSets, the Product will still be deleted."] # [doc = ""] # [doc = " It is recommended to not delete the specified ProductSet until after this"] # [doc = " operation has completed. It is also recommended to not add any of the"] # [doc = " Products involved in the batch delete to a new ProductSet while this"] # [doc = " operation is running because those Products may still end up deleted."] # [doc = ""] # [doc = " It's not possible to undo the PurgeProducts operation. Therefore, it is"] # [doc = " recommended to keep the csv files used in ImportProductSets (if that was"] # [doc = " how you originally built the Product Set) before starting PurgeProducts, in"] # [doc = " case you need to re-import the data after deletion."] # [doc = ""] # [doc = " If the plan is to purge all of the Products from a ProductSet and then"] # [doc = " re-use the empty ProductSet to re-import new Products into the empty"] # [doc = " ProductSet, you must wait until the PurgeProducts operation has finished"] # [doc = " for that ProductSet."] # [doc = ""] # [doc = " The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the"] # [doc = " progress and results of the request."] # [doc = " `Operation.metadata` contains `BatchOperationMetadata`. (progress)"] pub async fn purge_products (& mut self , request : impl tonic :: IntoRequest < super :: PurgeProductsRequest > ,) -> Result < tonic :: Response < super :: super :: super :: super :: longrunning :: Operation > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ProductSearch/PurgeProducts") ; self . inner . unary (request . into_request () , path , codec) . await } } impl < T : Clone > Clone for ProductSearchClient < T > { fn clone (& self) -> Self { Self { inner : self . inner . clone () , } } } impl < T > std :: fmt :: Debug for ProductSearchClient < T > { fn fmt (& self , f : & mut std :: fmt :: Formatter < '_ >) -> std :: fmt :: Result { write ! (f , "ProductSearchClient {{ ... }}") } } }/// Parameters for a product search request.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductSearchParams {
     /// The bounding polygon around the area of interest in the image.
     /// Optional. If it is not specified, system discretion will be applied.
-    #[prost(message, optional, tag = "9")]
+    #[prost(message, optional, tag="9")]
     pub bounding_poly: ::core::option::Option<BoundingPoly>,
     /// The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to be searched for similar images.
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
-    #[prost(string, tag = "6")]
+    #[prost(string, tag="6")]
     pub product_set: ::prost::alloc::string::String,
     /// The list of product categories to search in. Currently, we only consider
     /// the first category, and either "homegoods-v2", "apparel-v2", "toys-v2",
@@ -1196,7 +668,7 @@ pub struct ProductSearchParams {
     /// be deprecated. For new products, please use "homegoods-v2", "apparel-v2",
     /// or "toys-v2" for better product search accuracy. It is recommended to
     /// migrate existing products to these categories as well.
-    #[prost(string, repeated, tag = "7")]
+    #[prost(string, repeated, tag="7")]
     pub product_categories: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// The filtering expression. This can be used to restrict search results based
     /// on Product labels. We currently support an AND of OR of key-value
@@ -1206,7 +678,7 @@ pub struct ProductSearchParams {
     /// For example, "(color = red OR color = blue) AND brand = Google" is
     /// acceptable, but "(color = red OR brand = Google)" is not acceptable.
     /// "color: red" is not acceptable because it uses a ':' instead of an '='.
-    #[prost(string, tag = "8")]
+    #[prost(string, tag="8")]
     pub filter: ::prost::alloc::string::String,
 }
 /// Results for a product search request.
@@ -1215,16 +687,16 @@ pub struct ProductSearchResults {
     /// Timestamp of the index which provided these results. Products added to the
     /// product set and products removed from the product set after this time are
     /// not reflected in the current results.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub index_time: ::core::option::Option<::prost_types::Timestamp>,
     /// List of results, one for each product match.
-    #[prost(message, repeated, tag = "5")]
+    #[prost(message, repeated, tag="5")]
     pub results: ::prost::alloc::vec::Vec<product_search_results::Result>,
     /// List of results grouped by products detected in the query image. Each entry
     /// corresponds to one bounding polygon in the query image, and contains the
     /// matching products specific to that region. There may be duplicate product
     /// matches in the union of all the per-product results.
-    #[prost(message, repeated, tag = "6")]
+    #[prost(message, repeated, tag="6")]
     pub product_grouped_results: ::prost::alloc::vec::Vec<product_search_results::GroupedResult>,
 }
 /// Nested message and enum types in `ProductSearchResults`.
@@ -1233,33 +705,33 @@ pub mod product_search_results {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Result {
         /// The Product.
-        #[prost(message, optional, tag = "1")]
+        #[prost(message, optional, tag="1")]
         pub product: ::core::option::Option<super::Product>,
         /// A confidence level on the match, ranging from 0 (no confidence) to
         /// 1 (full confidence).
-        #[prost(float, tag = "2")]
+        #[prost(float, tag="2")]
         pub score: f32,
         /// The resource name of the image from the product that is the closest match
         /// to the query.
-        #[prost(string, tag = "3")]
+        #[prost(string, tag="3")]
         pub image: ::prost::alloc::string::String,
     }
     /// Prediction for what the object in the bounding box is.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ObjectAnnotation {
         /// Object ID that should align with EntityAnnotation mid.
-        #[prost(string, tag = "1")]
+        #[prost(string, tag="1")]
         pub mid: ::prost::alloc::string::String,
         /// The BCP-47 language code, such as "en-US" or "sr-Latn". For more
         /// information, see
         /// http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-        #[prost(string, tag = "2")]
+        #[prost(string, tag="2")]
         pub language_code: ::prost::alloc::string::String,
         /// Object name, expressed in its `language_code` language.
-        #[prost(string, tag = "3")]
+        #[prost(string, tag="3")]
         pub name: ::prost::alloc::string::String,
         /// Score of the result. Range [0, 1].
-        #[prost(float, tag = "4")]
+        #[prost(float, tag="4")]
         pub score: f32,
     }
     /// Information about the products similar to a single product in a query
@@ -1267,13 +739,13 @@ pub mod product_search_results {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct GroupedResult {
         /// The bounding polygon around the product detected in the query image.
-        #[prost(message, optional, tag = "1")]
+        #[prost(message, optional, tag="1")]
         pub bounding_poly: ::core::option::Option<super::BoundingPoly>,
         /// List of results, one for each product match.
-        #[prost(message, repeated, tag = "2")]
+        #[prost(message, repeated, tag="2")]
         pub results: ::prost::alloc::vec::Vec<Result>,
         /// List of generic predictions for the object in the bounding box.
-        #[prost(message, repeated, tag = "3")]
+        #[prost(message, repeated, tag="3")]
         pub object_annotations: ::prost::alloc::vec::Vec<ObjectAnnotation>,
     }
 }
@@ -1287,10 +759,10 @@ pub mod product_search_results {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextAnnotation {
     /// List of pages detected by OCR.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub pages: ::prost::alloc::vec::Vec<Page>,
     /// UTF-8 text detected on the pages.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub text: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `TextAnnotation`.
@@ -1301,28 +773,26 @@ pub mod text_annotation {
         /// The BCP-47 language code, such as "en-US" or "sr-Latn". For more
         /// information, see
         /// http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-        #[prost(string, tag = "1")]
+        #[prost(string, tag="1")]
         pub language_code: ::prost::alloc::string::String,
         /// Confidence of detected language. Range [0, 1].
-        #[prost(float, tag = "2")]
+        #[prost(float, tag="2")]
         pub confidence: f32,
     }
     /// Detected start or end of a structural component.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DetectedBreak {
         /// Detected break type.
-        #[prost(enumeration = "detected_break::BreakType", tag = "1")]
+        #[prost(enumeration="detected_break::BreakType", tag="1")]
         pub r#type: i32,
         /// True if break prepends the element.
-        #[prost(bool, tag = "2")]
+        #[prost(bool, tag="2")]
         pub is_prefix: bool,
     }
     /// Nested message and enum types in `DetectedBreak`.
     pub mod detected_break {
         /// Enum to denote the type of break found. New line, space etc.
-        #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
-        )]
+        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
         #[repr(i32)]
         pub enum BreakType {
             /// Unknown break label type.
@@ -1344,10 +814,10 @@ pub mod text_annotation {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct TextProperty {
         /// A list of detected languages together with confidence.
-        #[prost(message, repeated, tag = "1")]
+        #[prost(message, repeated, tag="1")]
         pub detected_languages: ::prost::alloc::vec::Vec<DetectedLanguage>,
         /// Detected start or end of a text segment.
-        #[prost(message, optional, tag = "2")]
+        #[prost(message, optional, tag="2")]
         pub detected_break: ::core::option::Option<DetectedBreak>,
     }
 }
@@ -1355,28 +825,28 @@ pub mod text_annotation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Page {
     /// Additional information detected on the page.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub property: ::core::option::Option<text_annotation::TextProperty>,
     /// Page width. For PDFs the unit is points. For images (including
     /// TIFFs) the unit is pixels.
-    #[prost(int32, tag = "2")]
+    #[prost(int32, tag="2")]
     pub width: i32,
     /// Page height. For PDFs the unit is points. For images (including
     /// TIFFs) the unit is pixels.
-    #[prost(int32, tag = "3")]
+    #[prost(int32, tag="3")]
     pub height: i32,
     /// List of blocks of text, images etc on this page.
-    #[prost(message, repeated, tag = "4")]
+    #[prost(message, repeated, tag="4")]
     pub blocks: ::prost::alloc::vec::Vec<Block>,
     /// Confidence of the OCR results on the page. Range [0, 1].
-    #[prost(float, tag = "5")]
+    #[prost(float, tag="5")]
     pub confidence: f32,
 }
 /// Logical element on the page.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Block {
     /// Additional information detected for the block.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub property: ::core::option::Option<text_annotation::TextProperty>,
     /// The bounding box for the block.
     /// The vertices are in the order of top-left, top-right, bottom-right,
@@ -1398,16 +868,16 @@ pub struct Block {
     ///         1----0
     ///
     ///   and the vertex order will still be (0, 1, 2, 3).
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub bounding_box: ::core::option::Option<BoundingPoly>,
     /// List of paragraphs in this block (if this blocks is of type text).
-    #[prost(message, repeated, tag = "3")]
+    #[prost(message, repeated, tag="3")]
     pub paragraphs: ::prost::alloc::vec::Vec<Paragraph>,
     /// Detected block type (text, image etc) for this block.
-    #[prost(enumeration = "block::BlockType", tag = "4")]
+    #[prost(enumeration="block::BlockType", tag="4")]
     pub block_type: i32,
     /// Confidence of the OCR results on the block. Range [0, 1].
-    #[prost(float, tag = "5")]
+    #[prost(float, tag="5")]
     pub confidence: f32,
 }
 /// Nested message and enum types in `Block`.
@@ -1434,7 +904,7 @@ pub mod block {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Paragraph {
     /// Additional information detected for the paragraph.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub property: ::core::option::Option<text_annotation::TextProperty>,
     /// The bounding box for the paragraph.
     /// The vertices are in the order of top-left, top-right, bottom-right,
@@ -1451,20 +921,20 @@ pub struct Paragraph {
     ///      |    |
     ///      1----0
     ///   and the vertex order will still be (0, 1, 2, 3).
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub bounding_box: ::core::option::Option<BoundingPoly>,
     /// List of all words in this paragraph.
-    #[prost(message, repeated, tag = "3")]
+    #[prost(message, repeated, tag="3")]
     pub words: ::prost::alloc::vec::Vec<Word>,
     /// Confidence of the OCR results for the paragraph. Range [0, 1].
-    #[prost(float, tag = "4")]
+    #[prost(float, tag="4")]
     pub confidence: f32,
 }
 /// A word representation.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Word {
     /// Additional information detected for the word.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub property: ::core::option::Option<text_annotation::TextProperty>,
     /// The bounding box for the word.
     /// The vertices are in the order of top-left, top-right, bottom-right,
@@ -1481,21 +951,21 @@ pub struct Word {
     ///      |    |
     ///      1----0
     ///   and the vertex order will still be (0, 1, 2, 3).
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub bounding_box: ::core::option::Option<BoundingPoly>,
     /// List of symbols in the word.
     /// The order of the symbols follows the natural reading order.
-    #[prost(message, repeated, tag = "3")]
+    #[prost(message, repeated, tag="3")]
     pub symbols: ::prost::alloc::vec::Vec<Symbol>,
     /// Confidence of the OCR results for the word. Range [0, 1].
-    #[prost(float, tag = "4")]
+    #[prost(float, tag="4")]
     pub confidence: f32,
 }
 /// A single symbol representation.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Symbol {
     /// Additional information detected for the symbol.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub property: ::core::option::Option<text_annotation::TextProperty>,
     /// The bounding box for the symbol.
     /// The vertices are in the order of top-left, top-right, bottom-right,
@@ -1512,39 +982,39 @@ pub struct Symbol {
     ///      |    |
     ///      1----0
     ///   and the vertex order will still be (0, 1, 2, 3).
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub bounding_box: ::core::option::Option<BoundingPoly>,
     /// The actual UTF-8 representation of the symbol.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub text: ::prost::alloc::string::String,
     /// Confidence of the OCR results for the symbol. Range [0, 1].
-    #[prost(float, tag = "4")]
+    #[prost(float, tag="4")]
     pub confidence: f32,
 }
 /// Relevant information for the image from the Internet.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WebDetection {
     /// Deduced entities from similar images on the Internet.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub web_entities: ::prost::alloc::vec::Vec<web_detection::WebEntity>,
     /// Fully matching images from the Internet.
     /// Can include resized copies of the query image.
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag="2")]
     pub full_matching_images: ::prost::alloc::vec::Vec<web_detection::WebImage>,
     /// Partial matching images from the Internet.
     /// Those images are similar enough to share some key-point features. For
     /// example an original image will likely have partial matching for its crops.
-    #[prost(message, repeated, tag = "3")]
+    #[prost(message, repeated, tag="3")]
     pub partial_matching_images: ::prost::alloc::vec::Vec<web_detection::WebImage>,
     /// Web pages containing the matching images from the Internet.
-    #[prost(message, repeated, tag = "4")]
+    #[prost(message, repeated, tag="4")]
     pub pages_with_matching_images: ::prost::alloc::vec::Vec<web_detection::WebPage>,
     /// The visually similar image results.
-    #[prost(message, repeated, tag = "6")]
+    #[prost(message, repeated, tag="6")]
     pub visually_similar_images: ::prost::alloc::vec::Vec<web_detection::WebImage>,
     /// The service's best guess as to the topic of the request image.
     /// Inferred from similar images on the open web.
-    #[prost(message, repeated, tag = "8")]
+    #[prost(message, repeated, tag="8")]
     pub best_guess_labels: ::prost::alloc::vec::Vec<web_detection::WebLabel>,
 }
 /// Nested message and enum types in `WebDetection`.
@@ -1553,59 +1023,59 @@ pub mod web_detection {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct WebEntity {
         /// Opaque entity ID.
-        #[prost(string, tag = "1")]
+        #[prost(string, tag="1")]
         pub entity_id: ::prost::alloc::string::String,
         /// Overall relevancy score for the entity.
         /// Not normalized and not comparable across different image queries.
-        #[prost(float, tag = "2")]
+        #[prost(float, tag="2")]
         pub score: f32,
         /// Canonical description of the entity, in English.
-        #[prost(string, tag = "3")]
+        #[prost(string, tag="3")]
         pub description: ::prost::alloc::string::String,
     }
     /// Metadata for online images.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct WebImage {
         /// The result image URL.
-        #[prost(string, tag = "1")]
+        #[prost(string, tag="1")]
         pub url: ::prost::alloc::string::String,
         /// (Deprecated) Overall relevancy score for the image.
-        #[prost(float, tag = "2")]
+        #[prost(float, tag="2")]
         pub score: f32,
     }
     /// Metadata for web pages.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct WebPage {
         /// The result web page URL.
-        #[prost(string, tag = "1")]
+        #[prost(string, tag="1")]
         pub url: ::prost::alloc::string::String,
         /// (Deprecated) Overall relevancy score for the web page.
-        #[prost(float, tag = "2")]
+        #[prost(float, tag="2")]
         pub score: f32,
         /// Title for the web page, may contain HTML markups.
-        #[prost(string, tag = "3")]
+        #[prost(string, tag="3")]
         pub page_title: ::prost::alloc::string::String,
         /// Fully matching images on the page.
         /// Can include resized copies of the query image.
-        #[prost(message, repeated, tag = "4")]
+        #[prost(message, repeated, tag="4")]
         pub full_matching_images: ::prost::alloc::vec::Vec<WebImage>,
         /// Partial matching images on the page.
         /// Those images are similar enough to share some key-point features. For
         /// example an original image will likely have partial matching for its
         /// crops.
-        #[prost(message, repeated, tag = "5")]
+        #[prost(message, repeated, tag="5")]
         pub partial_matching_images: ::prost::alloc::vec::Vec<WebImage>,
     }
     /// Label to provide extra metadata for the web detection.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct WebLabel {
         /// Label for extra metadata.
-        #[prost(string, tag = "1")]
+        #[prost(string, tag="1")]
         pub label: ::prost::alloc::string::String,
         /// The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
         /// For more information, see
         /// http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-        #[prost(string, tag = "2")]
+        #[prost(string, tag="2")]
         pub language_code: ::prost::alloc::string::String,
     }
 }
@@ -1615,16 +1085,16 @@ pub mod web_detection {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Feature {
     /// The feature type.
-    #[prost(enumeration = "feature::Type", tag = "1")]
+    #[prost(enumeration="feature::Type", tag="1")]
     pub r#type: i32,
     /// Maximum number of results of this type. Does not apply to
     /// `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
-    #[prost(int32, tag = "2")]
+    #[prost(int32, tag="2")]
     pub max_results: i32,
     /// Model to use for the feature.
     /// Supported values: "builtin/stable" (the default if unset) and
     /// "builtin/latest".
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub model: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Feature`.
@@ -1675,7 +1145,7 @@ pub struct ImageSource {
     /// `gs://bucket_name/object_name`. Object versioning is not supported. See
     /// [Google Cloud Storage Request
     /// URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub gcs_image_uri: ::prost::alloc::string::String,
     /// The URI of the source image. Can be either:
     ///
@@ -1694,7 +1164,7 @@ pub struct ImageSource {
     ///
     /// When both `gcs_image_uri` and `image_uri` are specified, `image_uri` takes
     /// precedence.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub image_uri: ::prost::alloc::string::String,
 }
 /// Client image to perform Google Cloud Vision API tasks over.
@@ -1703,12 +1173,12 @@ pub struct Image {
     /// Image content, represented as a stream of bytes.
     /// Note: As with all `bytes` fields, protobuffers use a pure binary
     /// representation, whereas JSON representations use base64.
-    #[prost(bytes = "vec", tag = "1")]
+    #[prost(bytes="vec", tag="1")]
     pub content: ::prost::alloc::vec::Vec<u8>,
     /// Google Cloud Storage image location, or publicly-accessible image
     /// URL. If both `content` and `source` are provided for an image, `content`
     /// takes precedence and is used to perform the image annotation request.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub source: ::core::option::Option<ImageSource>,
 }
 /// A face annotation object contains the results of face detection.
@@ -1721,7 +1191,7 @@ pub struct FaceAnnotation {
     /// Note that one or more x and/or y coordinates may not be generated in the
     /// `BoundingPoly` (the polygon will be unbounded) if only a partial face
     /// appears in the image to be annotated.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub bounding_poly: ::core::option::Option<BoundingPoly>,
     /// The `fd_bounding_poly` bounding polygon is tighter than the
     /// `boundingPoly`, and encloses only the skin part of the face. Typically, it
@@ -1729,51 +1199,51 @@ pub struct FaceAnnotation {
     /// "amount of skin" visible in an image. It is not based on the
     /// landmarker results, only on the initial face detection, hence
     /// the <code>fd</code> (face detection) prefix.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub fd_bounding_poly: ::core::option::Option<BoundingPoly>,
     /// Detected face landmarks.
-    #[prost(message, repeated, tag = "3")]
+    #[prost(message, repeated, tag="3")]
     pub landmarks: ::prost::alloc::vec::Vec<face_annotation::Landmark>,
     /// Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
     /// of the face relative to the image vertical about the axis perpendicular to
     /// the face. Range [-180,180].
-    #[prost(float, tag = "4")]
+    #[prost(float, tag="4")]
     pub roll_angle: f32,
     /// Yaw angle, which indicates the leftward/rightward angle that the face is
     /// pointing relative to the vertical plane perpendicular to the image. Range
     /// [-180,180].
-    #[prost(float, tag = "5")]
+    #[prost(float, tag="5")]
     pub pan_angle: f32,
     /// Pitch angle, which indicates the upwards/downwards angle that the face is
     /// pointing relative to the image's horizontal plane. Range [-180,180].
-    #[prost(float, tag = "6")]
+    #[prost(float, tag="6")]
     pub tilt_angle: f32,
     /// Detection confidence. Range [0, 1].
-    #[prost(float, tag = "7")]
+    #[prost(float, tag="7")]
     pub detection_confidence: f32,
     /// Face landmarking confidence. Range [0, 1].
-    #[prost(float, tag = "8")]
+    #[prost(float, tag="8")]
     pub landmarking_confidence: f32,
     /// Joy likelihood.
-    #[prost(enumeration = "Likelihood", tag = "9")]
+    #[prost(enumeration="Likelihood", tag="9")]
     pub joy_likelihood: i32,
     /// Sorrow likelihood.
-    #[prost(enumeration = "Likelihood", tag = "10")]
+    #[prost(enumeration="Likelihood", tag="10")]
     pub sorrow_likelihood: i32,
     /// Anger likelihood.
-    #[prost(enumeration = "Likelihood", tag = "11")]
+    #[prost(enumeration="Likelihood", tag="11")]
     pub anger_likelihood: i32,
     /// Surprise likelihood.
-    #[prost(enumeration = "Likelihood", tag = "12")]
+    #[prost(enumeration="Likelihood", tag="12")]
     pub surprise_likelihood: i32,
     /// Under-exposed likelihood.
-    #[prost(enumeration = "Likelihood", tag = "13")]
+    #[prost(enumeration="Likelihood", tag="13")]
     pub under_exposed_likelihood: i32,
     /// Blurred likelihood.
-    #[prost(enumeration = "Likelihood", tag = "14")]
+    #[prost(enumeration="Likelihood", tag="14")]
     pub blurred_likelihood: i32,
     /// Headwear likelihood.
-    #[prost(enumeration = "Likelihood", tag = "15")]
+    #[prost(enumeration="Likelihood", tag="15")]
     pub headwear_likelihood: i32,
 }
 /// Nested message and enum types in `FaceAnnotation`.
@@ -1782,10 +1252,10 @@ pub mod face_annotation {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Landmark {
         /// Face landmark type.
-        #[prost(enumeration = "landmark::Type", tag = "3")]
+        #[prost(enumeration="landmark::Type", tag="3")]
         pub r#type: i32,
         /// Face landmark position.
-        #[prost(message, optional, tag = "4")]
+        #[prost(message, optional, tag="4")]
         pub position: ::core::option::Option<super::Position>,
     }
     /// Nested message and enum types in `Landmark`.
@@ -1794,9 +1264,7 @@ pub mod face_annotation {
         /// Left and right are defined from the vantage of the viewer of the image
         /// without considering mirror projections typical of photos. So, `LEFT_EYE`,
         /// typically, is the person's right eye.
-        #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
-        )]
+        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
         #[repr(i32)]
         pub enum Type {
             /// Unknown face landmark detected. Should not be filled.
@@ -1876,20 +1344,20 @@ pub mod face_annotation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationInfo {
     /// lat/long location coordinates.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
 }
 /// A `Property` consists of a user-supplied name/value pair.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Property {
     /// Name of the property.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
     /// Value of the property.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub value: ::prost::alloc::string::String,
     /// Value of numeric properties.
-    #[prost(uint64, tag = "3")]
+    #[prost(uint64, tag="3")]
     pub uint64_value: u64,
 }
 /// Set of detected entity features.
@@ -1898,17 +1366,17 @@ pub struct EntityAnnotation {
     /// Opaque entity ID. Some IDs may be available in
     /// [Google Knowledge Graph Search
     /// API](https://developers.google.com/knowledge-graph/).
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub mid: ::prost::alloc::string::String,
     /// The language code for the locale in which the entity textual
     /// `description` is expressed.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub locale: ::prost::alloc::string::String,
     /// Entity textual description, expressed in its `locale` language.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub description: ::prost::alloc::string::String,
     /// Overall score of the result. Range [0, 1].
-    #[prost(float, tag = "4")]
+    #[prost(float, tag="4")]
     pub score: f32,
     /// **Deprecated. Use `score` instead.**
     /// The accuracy of the entity detection in an image.
@@ -1916,50 +1384,50 @@ pub struct EntityAnnotation {
     /// this field represents the confidence that there is a tower in the query
     /// image. Range [0, 1].
     #[deprecated]
-    #[prost(float, tag = "5")]
+    #[prost(float, tag="5")]
     pub confidence: f32,
     /// The relevancy of the ICA (Image Content Annotation) label to the
     /// image. For example, the relevancy of "tower" is likely higher to an image
     /// containing the detected "Eiffel Tower" than to an image containing a
     /// detected distant towering building, even though the confidence that
     /// there is a tower in each image may be the same. Range [0, 1].
-    #[prost(float, tag = "6")]
+    #[prost(float, tag="6")]
     pub topicality: f32,
     /// Image region to which this entity belongs. Not produced
     /// for `LABEL_DETECTION` features.
-    #[prost(message, optional, tag = "7")]
+    #[prost(message, optional, tag="7")]
     pub bounding_poly: ::core::option::Option<BoundingPoly>,
     /// The location information for the detected entity. Multiple
     /// `LocationInfo` elements can be present because one location may
     /// indicate the location of the scene in the image, and another location
     /// may indicate the location of the place where the image was taken.
     /// Location information is usually present for landmarks.
-    #[prost(message, repeated, tag = "8")]
+    #[prost(message, repeated, tag="8")]
     pub locations: ::prost::alloc::vec::Vec<LocationInfo>,
     /// Some entities may have optional user-supplied `Property` (name/value)
     /// fields, such a score or string that qualifies the entity.
-    #[prost(message, repeated, tag = "9")]
+    #[prost(message, repeated, tag="9")]
     pub properties: ::prost::alloc::vec::Vec<Property>,
 }
 /// Set of detected objects with bounding boxes.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocalizedObjectAnnotation {
     /// Object ID that should align with EntityAnnotation mid.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub mid: ::prost::alloc::string::String,
     /// The BCP-47 language code, such as "en-US" or "sr-Latn". For more
     /// information, see
     /// http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub language_code: ::prost::alloc::string::String,
     /// Object name, expressed in its `language_code` language.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub name: ::prost::alloc::string::String,
     /// Score of the result. Range [0, 1].
-    #[prost(float, tag = "4")]
+    #[prost(float, tag="4")]
     pub score: f32,
     /// Image region to which this object belongs. This must be populated.
-    #[prost(message, optional, tag = "5")]
+    #[prost(message, optional, tag="5")]
     pub bounding_poly: ::core::option::Option<BoundingPoly>,
 }
 /// Set of features pertaining to the image, computed by computer vision
@@ -1970,58 +1438,58 @@ pub struct SafeSearchAnnotation {
     /// Represents the adult content likelihood for the image. Adult content may
     /// contain elements such as nudity, pornographic images or cartoons, or
     /// sexual activities.
-    #[prost(enumeration = "Likelihood", tag = "1")]
+    #[prost(enumeration="Likelihood", tag="1")]
     pub adult: i32,
     /// Spoof likelihood. The likelihood that an modification
     /// was made to the image's canonical version to make it appear
     /// funny or offensive.
-    #[prost(enumeration = "Likelihood", tag = "2")]
+    #[prost(enumeration="Likelihood", tag="2")]
     pub spoof: i32,
     /// Likelihood that this is a medical image.
-    #[prost(enumeration = "Likelihood", tag = "3")]
+    #[prost(enumeration="Likelihood", tag="3")]
     pub medical: i32,
     /// Likelihood that this image contains violent content.
-    #[prost(enumeration = "Likelihood", tag = "4")]
+    #[prost(enumeration="Likelihood", tag="4")]
     pub violence: i32,
     /// Likelihood that the request image contains racy content. Racy content may
     /// include (but is not limited to) skimpy or sheer clothing, strategically
     /// covered nudity, lewd or provocative poses, or close-ups of sensitive
     /// body areas.
-    #[prost(enumeration = "Likelihood", tag = "9")]
+    #[prost(enumeration="Likelihood", tag="9")]
     pub racy: i32,
     /// Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
     /// very confident.
-    #[prost(float, tag = "16")]
+    #[prost(float, tag="16")]
     pub adult_confidence: f32,
     /// Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
     /// very confident.
-    #[prost(float, tag = "18")]
+    #[prost(float, tag="18")]
     pub spoof_confidence: f32,
     /// Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
     /// very confident.
-    #[prost(float, tag = "20")]
+    #[prost(float, tag="20")]
     pub medical_confidence: f32,
     /// Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
     /// very confident.
-    #[prost(float, tag = "22")]
+    #[prost(float, tag="22")]
     pub violence_confidence: f32,
     /// Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
     /// confident.
-    #[prost(float, tag = "24")]
+    #[prost(float, tag="24")]
     pub racy_confidence: f32,
     /// Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
     /// confident.
-    #[prost(float, tag = "26")]
+    #[prost(float, tag="26")]
     pub nsfw_confidence: f32,
 }
 /// Rectangle determined by min and max `LatLng` pairs.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LatLongRect {
     /// Min lat/long pair.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub min_lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
     /// Max lat/long pair.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub max_lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
 }
 /// Color information consists of RGB channels, score, and the fraction of
@@ -2029,28 +1497,28 @@ pub struct LatLongRect {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ColorInfo {
     /// RGB components of the color.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub color: ::core::option::Option<super::super::super::r#type::Color>,
     /// Image-specific score for this color. Value in range [0, 1].
-    #[prost(float, tag = "2")]
+    #[prost(float, tag="2")]
     pub score: f32,
     /// The fraction of pixels the color occupies in the image.
     /// Value in range [0, 1].
-    #[prost(float, tag = "3")]
+    #[prost(float, tag="3")]
     pub pixel_fraction: f32,
 }
 /// Set of dominant colors and their corresponding scores.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DominantColorsAnnotation {
     /// RGB color values with their score and pixel fraction.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub colors: ::prost::alloc::vec::Vec<ColorInfo>,
 }
 /// Stores image properties, such as dominant colors.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageProperties {
     /// If present, dominant colors completed successfully.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub dominant_colors: ::core::option::Option<DominantColorsAnnotation>,
 }
 /// Single crop hint that is used to generate a new crop when serving an image.
@@ -2058,21 +1526,21 @@ pub struct ImageProperties {
 pub struct CropHint {
     /// The bounding polygon for the crop region. The coordinates of the bounding
     /// box are in the original image's scale.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub bounding_poly: ::core::option::Option<BoundingPoly>,
     /// Confidence of this being a salient region.  Range [0, 1].
-    #[prost(float, tag = "2")]
+    #[prost(float, tag="2")]
     pub confidence: f32,
     /// Fraction of importance of this salient region with respect to the original
     /// image.
-    #[prost(float, tag = "3")]
+    #[prost(float, tag="3")]
     pub importance_fraction: f32,
 }
 /// Set of crop hints that are used to generate new crops when serving images.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CropHintsAnnotation {
     /// Crop hint results.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub crop_hints: ::prost::alloc::vec::Vec<CropHint>,
 }
 /// Parameters for crop hints annotation request.
@@ -2084,21 +1552,21 @@ pub struct CropHintsParams {
     /// best possible crop is returned. The number of provided aspect ratios is
     /// limited to a maximum of 16; any aspect ratios provided after the 16th are
     /// ignored.
-    #[prost(float, repeated, tag = "1")]
+    #[prost(float, repeated, tag="1")]
     pub aspect_ratios: ::prost::alloc::vec::Vec<f32>,
 }
 /// Parameters for web detection request.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WebDetectionParams {
     /// Whether to include results derived from the geo information in the image.
-    #[prost(bool, tag = "2")]
+    #[prost(bool, tag="2")]
     pub include_geo_results: bool,
 }
 /// Image context and/or feature-specific parameters.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageContext {
     /// Not used.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub lat_long_rect: ::core::option::Option<LatLongRect>,
     /// List of languages to use for TEXT_DETECTION. In most cases, an empty value
     /// yields the best results since it enables automatic language detection. For
@@ -2108,16 +1576,16 @@ pub struct ImageContext {
     /// significant hindrance if the hint is wrong). Text detection returns an
     /// error if one or more of the specified languages is not one of the
     /// [supported languages](/vision/docs/languages).
-    #[prost(string, repeated, tag = "2")]
+    #[prost(string, repeated, tag="2")]
     pub language_hints: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Parameters for crop hints annotation request.
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag="4")]
     pub crop_hints_params: ::core::option::Option<CropHintsParams>,
     /// Parameters for product search.
-    #[prost(message, optional, tag = "5")]
+    #[prost(message, optional, tag="5")]
     pub product_search_params: ::core::option::Option<ProductSearchParams>,
     /// Parameters for web detection.
-    #[prost(message, optional, tag = "6")]
+    #[prost(message, optional, tag="6")]
     pub web_detection_params: ::core::option::Option<WebDetectionParams>,
 }
 /// Request for performing Google Cloud Vision API tasks over a user-provided
@@ -2125,13 +1593,13 @@ pub struct ImageContext {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateImageRequest {
     /// The image to be processed.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub image: ::core::option::Option<Image>,
     /// Requested features.
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag="2")]
     pub features: ::prost::alloc::vec::Vec<Feature>,
     /// Additional context that may accompany the image.
-    #[prost(message, optional, tag = "3")]
+    #[prost(message, optional, tag="3")]
     pub image_context: ::core::option::Option<ImageContext>,
 }
 /// If an image was produced from a file (e.g. a PDF), this message gives
@@ -2139,71 +1607,71 @@ pub struct AnnotateImageRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageAnnotationContext {
     /// The URI of the file used to produce the image.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub uri: ::prost::alloc::string::String,
     /// If the file was a PDF or TIFF, this field gives the page number within
     /// the file used to produce the image.
-    #[prost(int32, tag = "2")]
+    #[prost(int32, tag="2")]
     pub page_number: i32,
 }
 /// Response to an image annotation request.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateImageResponse {
     /// If present, face detection has completed successfully.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub face_annotations: ::prost::alloc::vec::Vec<FaceAnnotation>,
     /// If present, landmark detection has completed successfully.
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag="2")]
     pub landmark_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
     /// If present, logo detection has completed successfully.
-    #[prost(message, repeated, tag = "3")]
+    #[prost(message, repeated, tag="3")]
     pub logo_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
     /// If present, label detection has completed successfully.
-    #[prost(message, repeated, tag = "4")]
+    #[prost(message, repeated, tag="4")]
     pub label_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
     /// If present, localized object detection has completed successfully.
     /// This will be sorted descending by confidence score.
-    #[prost(message, repeated, tag = "22")]
+    #[prost(message, repeated, tag="22")]
     pub localized_object_annotations: ::prost::alloc::vec::Vec<LocalizedObjectAnnotation>,
     /// If present, text (OCR) detection has completed successfully.
-    #[prost(message, repeated, tag = "5")]
+    #[prost(message, repeated, tag="5")]
     pub text_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
     /// If present, text (OCR) detection or document (OCR) text detection has
     /// completed successfully.
     /// This annotation provides the structural hierarchy for the OCR detected
     /// text.
-    #[prost(message, optional, tag = "12")]
+    #[prost(message, optional, tag="12")]
     pub full_text_annotation: ::core::option::Option<TextAnnotation>,
     /// If present, safe-search annotation has completed successfully.
-    #[prost(message, optional, tag = "6")]
+    #[prost(message, optional, tag="6")]
     pub safe_search_annotation: ::core::option::Option<SafeSearchAnnotation>,
     /// If present, image properties were extracted successfully.
-    #[prost(message, optional, tag = "8")]
+    #[prost(message, optional, tag="8")]
     pub image_properties_annotation: ::core::option::Option<ImageProperties>,
     /// If present, crop hints have completed successfully.
-    #[prost(message, optional, tag = "11")]
+    #[prost(message, optional, tag="11")]
     pub crop_hints_annotation: ::core::option::Option<CropHintsAnnotation>,
     /// If present, web detection has completed successfully.
-    #[prost(message, optional, tag = "13")]
+    #[prost(message, optional, tag="13")]
     pub web_detection: ::core::option::Option<WebDetection>,
     /// If present, product search has completed successfully.
-    #[prost(message, optional, tag = "14")]
+    #[prost(message, optional, tag="14")]
     pub product_search_results: ::core::option::Option<ProductSearchResults>,
     /// If set, represents the error message for the operation.
     /// Note that filled-in image annotations are guaranteed to be
     /// correct, even when `error` is set.
-    #[prost(message, optional, tag = "9")]
+    #[prost(message, optional, tag="9")]
     pub error: ::core::option::Option<super::super::super::rpc::Status>,
     /// If present, contextual information is needed to understand where this image
     /// comes from.
-    #[prost(message, optional, tag = "21")]
+    #[prost(message, optional, tag="21")]
     pub context: ::core::option::Option<ImageAnnotationContext>,
 }
 /// Multiple image annotation requests are batched into a single service call.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchAnnotateImagesRequest {
     /// Required. Individual image annotation requests for this batch.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub requests: ::prost::alloc::vec::Vec<AnnotateImageRequest>,
     /// Optional. Target project and location to make a call.
     ///
@@ -2217,27 +1685,27 @@ pub struct BatchAnnotateImagesRequest {
     ///     `eu`: The European Union.
     ///
     /// Example: `projects/project-A/locations/eu`.
-    #[prost(string, tag = "4")]
+    #[prost(string, tag="4")]
     pub parent: ::prost::alloc::string::String,
 }
 /// Response to a batch image annotation request.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchAnnotateImagesResponse {
     /// Individual responses to image annotation requests within the batch.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub responses: ::prost::alloc::vec::Vec<AnnotateImageResponse>,
 }
 /// A request to annotate one single file, e.g. a PDF, TIFF or GIF file.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateFileRequest {
     /// Required. Information about the input file.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub input_config: ::core::option::Option<InputConfig>,
     /// Required. Requested features.
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag="2")]
     pub features: ::prost::alloc::vec::Vec<Feature>,
     /// Additional context that may accompany the image(s) in the file.
-    #[prost(message, optional, tag = "3")]
+    #[prost(message, optional, tag="3")]
     pub image_context: ::core::option::Option<ImageContext>,
     /// Pages of the file to perform image annotation.
     ///
@@ -2253,7 +1721,7 @@ pub struct AnnotateFileRequest {
     ///
     /// If this field is empty, by default the service performs image annotation
     /// for the first 5 pages of the file.
-    #[prost(int32, repeated, tag = "4")]
+    #[prost(int32, repeated, tag="4")]
     pub pages: ::prost::alloc::vec::Vec<i32>,
 }
 /// Response to a single file annotation request. A file may contain one or more
@@ -2261,18 +1729,18 @@ pub struct AnnotateFileRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateFileResponse {
     /// Information about the file for which this response is generated.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub input_config: ::core::option::Option<InputConfig>,
     /// Individual responses to images found within the file. This field will be
     /// empty if the `error` field is set.
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag="2")]
     pub responses: ::prost::alloc::vec::Vec<AnnotateImageResponse>,
     /// This field gives the total number of pages in the file.
-    #[prost(int32, tag = "3")]
+    #[prost(int32, tag="3")]
     pub total_pages: i32,
     /// If set, represents the error message for the failed request. The
     /// `responses` field will not be set in this case.
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag="4")]
     pub error: ::core::option::Option<super::super::super::rpc::Status>,
 }
 /// A list of requests to annotate files using the BatchAnnotateFiles API.
@@ -2280,7 +1748,7 @@ pub struct AnnotateFileResponse {
 pub struct BatchAnnotateFilesRequest {
     /// Required. The list of file annotation requests. Right now we support only one
     /// AnnotateFileRequest in BatchAnnotateFilesRequest.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub requests: ::prost::alloc::vec::Vec<AnnotateFileRequest>,
     /// Optional. Target project and location to make a call.
     ///
@@ -2294,7 +1762,7 @@ pub struct BatchAnnotateFilesRequest {
     ///     `eu`: The European Union.
     ///
     /// Example: `projects/project-A/locations/eu`.
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub parent: ::prost::alloc::string::String,
 }
 /// A list of file annotation responses.
@@ -2302,40 +1770,40 @@ pub struct BatchAnnotateFilesRequest {
 pub struct BatchAnnotateFilesResponse {
     /// The list of file annotation responses, each response corresponding to each
     /// AnnotateFileRequest in BatchAnnotateFilesRequest.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub responses: ::prost::alloc::vec::Vec<AnnotateFileResponse>,
 }
 /// An offline file annotation request.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AsyncAnnotateFileRequest {
     /// Required. Information about the input file.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub input_config: ::core::option::Option<InputConfig>,
     /// Required. Requested features.
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag="2")]
     pub features: ::prost::alloc::vec::Vec<Feature>,
     /// Additional context that may accompany the image(s) in the file.
-    #[prost(message, optional, tag = "3")]
+    #[prost(message, optional, tag="3")]
     pub image_context: ::core::option::Option<ImageContext>,
     /// Required. The desired output location and metadata (e.g. format).
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag="4")]
     pub output_config: ::core::option::Option<OutputConfig>,
 }
 /// The response for a single offline file annotation request.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AsyncAnnotateFileResponse {
     /// The output location and metadata from AsyncAnnotateFileRequest.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub output_config: ::core::option::Option<OutputConfig>,
 }
 /// Request for async image annotation for a list of images.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AsyncBatchAnnotateImagesRequest {
     /// Required. Individual image annotation requests for this batch.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub requests: ::prost::alloc::vec::Vec<AnnotateImageRequest>,
     /// Required. The desired output location and metadata (e.g. format).
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub output_config: ::core::option::Option<OutputConfig>,
     /// Optional. Target project and location to make a call.
     ///
@@ -2349,14 +1817,14 @@ pub struct AsyncBatchAnnotateImagesRequest {
     ///     `eu`: The European Union.
     ///
     /// Example: `projects/project-A/locations/eu`.
-    #[prost(string, tag = "4")]
+    #[prost(string, tag="4")]
     pub parent: ::prost::alloc::string::String,
 }
 /// Response to an async batch image annotation request.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AsyncBatchAnnotateImagesResponse {
     /// The output location and metadata from AsyncBatchAnnotateImagesRequest.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub output_config: ::core::option::Option<OutputConfig>,
 }
 /// Multiple async file annotation requests are batched into a single service
@@ -2364,7 +1832,7 @@ pub struct AsyncBatchAnnotateImagesResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AsyncBatchAnnotateFilesRequest {
     /// Required. Individual async file annotation requests for this batch.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub requests: ::prost::alloc::vec::Vec<AsyncAnnotateFileRequest>,
     /// Optional. Target project and location to make a call.
     ///
@@ -2378,7 +1846,7 @@ pub struct AsyncBatchAnnotateFilesRequest {
     ///     `eu`: The European Union.
     ///
     /// Example: `projects/project-A/locations/eu`.
-    #[prost(string, tag = "4")]
+    #[prost(string, tag="4")]
     pub parent: ::prost::alloc::string::String,
 }
 /// Response to an async batch file annotation request.
@@ -2386,14 +1854,14 @@ pub struct AsyncBatchAnnotateFilesRequest {
 pub struct AsyncBatchAnnotateFilesResponse {
     /// The list of file annotation responses, one for each request in
     /// AsyncBatchAnnotateFilesRequest.
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub responses: ::prost::alloc::vec::Vec<AsyncAnnotateFileResponse>,
 }
 /// The desired input location and metadata.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InputConfig {
     /// The Google Cloud Storage location to read the input from.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub gcs_source: ::core::option::Option<GcsSource>,
     /// File content, represented as a stream of bytes.
     /// Note: As with all `bytes` fields, protobuffers use a pure binary
@@ -2401,18 +1869,18 @@ pub struct InputConfig {
     ///
     /// Currently, this field only works for BatchAnnotateFiles requests. It does
     /// not work for AsyncBatchAnnotateFiles requests.
-    #[prost(bytes = "vec", tag = "3")]
+    #[prost(bytes="vec", tag="3")]
     pub content: ::prost::alloc::vec::Vec<u8>,
     /// The type of the file. Currently only "application/pdf", "image/tiff" and
     /// "image/gif" are supported. Wildcards are not supported.
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub mime_type: ::prost::alloc::string::String,
 }
 /// The desired output location and metadata.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputConfig {
     /// The Google Cloud Storage location to write the output(s) to.
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub gcs_destination: ::core::option::Option<GcsDestination>,
     /// The max number of response protos to put into each output JSON file on
     /// Google Cloud Storage.
@@ -2425,7 +1893,7 @@ pub struct OutputConfig {
     ///
     /// Currently, batch_size only applies to GcsDestination, with potential future
     /// support for other output configurations.
-    #[prost(int32, tag = "2")]
+    #[prost(int32, tag="2")]
     pub batch_size: i32,
 }
 /// The Google Cloud Storage location where the input will be read from.
@@ -2433,7 +1901,7 @@ pub struct OutputConfig {
 pub struct GcsSource {
     /// Google Cloud Storage URI for the input file. This must only be a
     /// Google Cloud Storage object. Wildcards are not currently supported.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub uri: ::prost::alloc::string::String,
 }
 /// The Google Cloud Storage location where the output will be written to.
@@ -2461,20 +1929,20 @@ pub struct GcsDestination {
     /// which contains some subset of the full list of AnnotateImageResponse.
     /// Multiple outputs can happen if, for example, the output JSON is too large
     /// and overflows into multiple sharded files.
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub uri: ::prost::alloc::string::String,
 }
 /// Contains metadata for the BatchAnnotateImages operation.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
     /// Current state of the batch operation.
-    #[prost(enumeration = "operation_metadata::State", tag = "1")]
+    #[prost(enumeration="operation_metadata::State", tag="1")]
     pub state: i32,
     /// The time when the batch request was received.
-    #[prost(message, optional, tag = "5")]
+    #[prost(message, optional, tag="5")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     /// The time when the operation result was last updated.
-    #[prost(message, optional, tag = "6")]
+    #[prost(message, optional, tag="6")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `OperationMetadata`.
@@ -2513,146 +1981,4 @@ pub enum Likelihood {
     /// It is very likely.
     VeryLikely = 5,
 }
-#[doc = r" Generated client implementations."]
-pub mod image_annotator_client {
-    #![allow(unused_variables, dead_code, missing_docs)]
-    use tonic::codegen::*;
-    #[doc = " Service that performs Google Cloud Vision API detection tasks over client"]
-    #[doc = " images, such as face, landmark, logo, label, and text detection. The"]
-    #[doc = " ImageAnnotator service returns detected entities from the images."]
-    pub struct ImageAnnotatorClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl ImageAnnotatorClient<tonic::transport::Channel> {
-        #[doc = r" Attempt to create a new client by connecting to a given endpoint."]
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: std::convert::TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
-    impl<T> ImageAnnotatorClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::ResponseBody: Body + HttpBody + Send + 'static,
-        T::Error: Into<StdError>,
-        <T::ResponseBody as HttpBody>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_interceptor(inner: T, interceptor: impl Into<tonic::Interceptor>) -> Self {
-            let inner = tonic::client::Grpc::with_interceptor(inner, interceptor);
-            Self { inner }
-        }
-        #[doc = " Run image detection and annotation for a batch of images."]
-        pub async fn batch_annotate_images(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchAnnotateImagesRequest>,
-        ) -> Result<tonic::Response<super::BatchAnnotateImagesResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Service that performs image detection and annotation for a batch of files."]
-        #[doc = " Now only \"application/pdf\", \"image/tiff\" and \"image/gif\" are supported."]
-        #[doc = ""]
-        #[doc = " This service will extract at most 5 (customers can specify which 5 in"]
-        #[doc = " AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each"]
-        #[doc = " file provided and perform detection and annotation for each image"]
-        #[doc = " extracted."]
-        pub async fn batch_annotate_files(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchAnnotateFilesRequest>,
-        ) -> Result<tonic::Response<super::BatchAnnotateFilesResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateFiles",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Run asynchronous image detection and annotation for a list of images."]
-        #[doc = ""]
-        #[doc = " Progress and results can be retrieved through the"]
-        #[doc = " `google.longrunning.Operations` interface."]
-        #[doc = " `Operation.metadata` contains `OperationMetadata` (metadata)."]
-        #[doc = " `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results)."]
-        #[doc = ""]
-        #[doc = " This service will write image annotation outputs to json files in customer"]
-        #[doc = " GCS bucket, each json file containing BatchAnnotateImagesResponse proto."]
-        pub async fn async_batch_annotate_images(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AsyncBatchAnnotateImagesRequest>,
-        ) -> Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateImages",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " Run asynchronous image detection and annotation for a list of generic"]
-        #[doc = " files, such as PDF files, which may contain multiple pages and multiple"]
-        #[doc = " images per page. Progress and results can be retrieved through the"]
-        #[doc = " `google.longrunning.Operations` interface."]
-        #[doc = " `Operation.metadata` contains `OperationMetadata` (metadata)."]
-        #[doc = " `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results)."]
-        pub async fn async_batch_annotate_files(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AsyncBatchAnnotateFilesRequest>,
-        ) -> Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateFiles",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-    }
-    impl<T: Clone> Clone for ImageAnnotatorClient<T> {
-        fn clone(&self) -> Self {
-            Self {
-                inner: self.inner.clone(),
-            }
-        }
-    }
-    impl<T> std::fmt::Debug for ImageAnnotatorClient<T> {
-        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-            write!(f, "ImageAnnotatorClient {{ ... }}")
-        }
-    }
-}
+# [doc = r" Generated client implementations."] pub mod image_annotator_client { # ! [allow (unused_variables , dead_code , missing_docs)] use tonic :: codegen :: * ; # [doc = " Service that performs Google Cloud Vision API detection tasks over client"] # [doc = " images, such as face, landmark, logo, label, and text detection. The"] # [doc = " ImageAnnotator service returns detected entities from the images."] pub struct ImageAnnotatorClient < T > { inner : tonic :: client :: Grpc < T > , } impl < T > ImageAnnotatorClient < T > where T : tonic :: client :: GrpcService < tonic :: body :: BoxBody > , T :: ResponseBody : Body + HttpBody + Send + 'static , T :: Error : Into < StdError > , < T :: ResponseBody as HttpBody > :: Error : Into < StdError > + Send , { pub fn new (inner : T) -> Self { let inner = tonic :: client :: Grpc :: new (inner) ; Self { inner } } pub fn with_interceptor (inner : T , interceptor : impl Into < tonic :: Interceptor >) -> Self { let inner = tonic :: client :: Grpc :: with_interceptor (inner , interceptor) ; Self { inner } } # [doc = " Run image detection and annotation for a batch of images."] pub async fn batch_annotate_images (& mut self , request : impl tonic :: IntoRequest < super :: BatchAnnotateImagesRequest > ,) -> Result < tonic :: Response < super :: BatchAnnotateImagesResponse > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Service that performs image detection and annotation for a batch of files."] # [doc = " Now only \"application/pdf\", \"image/tiff\" and \"image/gif\" are supported."] # [doc = ""] # [doc = " This service will extract at most 5 (customers can specify which 5 in"] # [doc = " AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each"] # [doc = " file provided and perform detection and annotation for each image"] # [doc = " extracted."] pub async fn batch_annotate_files (& mut self , request : impl tonic :: IntoRequest < super :: BatchAnnotateFilesRequest > ,) -> Result < tonic :: Response < super :: BatchAnnotateFilesResponse > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateFiles") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Run asynchronous image detection and annotation for a list of images."] # [doc = ""] # [doc = " Progress and results can be retrieved through the"] # [doc = " `google.longrunning.Operations` interface."] # [doc = " `Operation.metadata` contains `OperationMetadata` (metadata)."] # [doc = " `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results)."] # [doc = ""] # [doc = " This service will write image annotation outputs to json files in customer"] # [doc = " GCS bucket, each json file containing BatchAnnotateImagesResponse proto."] pub async fn async_batch_annotate_images (& mut self , request : impl tonic :: IntoRequest < super :: AsyncBatchAnnotateImagesRequest > ,) -> Result < tonic :: Response < super :: super :: super :: super :: longrunning :: Operation > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateImages") ; self . inner . unary (request . into_request () , path , codec) . await } # [doc = " Run asynchronous image detection and annotation for a list of generic"] # [doc = " files, such as PDF files, which may contain multiple pages and multiple"] # [doc = " images per page. Progress and results can be retrieved through the"] # [doc = " `google.longrunning.Operations` interface."] # [doc = " `Operation.metadata` contains `OperationMetadata` (metadata)."] # [doc = " `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results)."] pub async fn async_batch_annotate_files (& mut self , request : impl tonic :: IntoRequest < super :: AsyncBatchAnnotateFilesRequest > ,) -> Result < tonic :: Response < super :: super :: super :: super :: longrunning :: Operation > , tonic :: Status > { self . inner . ready () . await . map_err (| e | { tonic :: Status :: new (tonic :: Code :: Unknown , format ! ("Service was not ready: {}" , e . into ())) }) ? ; let codec = tonic :: codec :: ProstCodec :: default () ; let path = http :: uri :: PathAndQuery :: from_static ("/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateFiles") ; self . inner . unary (request . into_request () , path , codec) . await } } impl < T : Clone > Clone for ImageAnnotatorClient < T > { fn clone (& self) -> Self { Self { inner : self . inner . clone () , } } } impl < T > std :: fmt :: Debug for ImageAnnotatorClient < T > { fn fmt (& self , f : & mut std :: fmt :: Formatter < '_ >) -> std :: fmt :: Result { write ! (f , "ImageAnnotatorClient {{ ... }}") } } }

@@ -19,7 +19,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         tonic_build::configure()
             .build_client(true)
             .build_server(false)
-            .format(true)
             .out_dir(&out_dir)
             .compile(proto_files, &["protos"])?;
 

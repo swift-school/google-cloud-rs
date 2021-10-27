@@ -120,13 +120,13 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Color {
     /// The amount of red in the color as a value in the interval [0, 1].
-    #[prost(float, tag = "1")]
+    #[prost(float, tag="1")]
     pub red: f32,
     /// The amount of green in the color as a value in the interval [0, 1].
-    #[prost(float, tag = "2")]
+    #[prost(float, tag="2")]
     pub green: f32,
     /// The amount of blue in the color as a value in the interval [0, 1].
-    #[prost(float, tag = "3")]
+    #[prost(float, tag="3")]
     pub blue: f32,
     /// The fraction of this color that should be applied to the pixel. That is,
     /// the final pixel color is defined by the equation:
@@ -139,7 +139,7 @@ pub struct Color {
     /// possible to distinguish between a default value and the value being unset.
     /// If omitted, this color object is to be rendered as a solid color
     /// (as if the alpha value had been explicitly given with a value of 1.0).
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag="4")]
     pub alpha: ::core::option::Option<f32>,
 }
 /// An object representing a latitude/longitude pair. This is expressed as a pair
@@ -150,9 +150,9 @@ pub struct Color {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LatLng {
     /// The latitude in degrees. It must be in the range [-90.0, +90.0].
-    #[prost(double, tag = "1")]
+    #[prost(double, tag="1")]
     pub latitude: f64,
     /// The longitude in degrees. It must be in the range [-180.0, +180.0].
-    #[prost(double, tag = "2")]
+    #[prost(double, tag="2")]
     pub longitude: f64,
 }
