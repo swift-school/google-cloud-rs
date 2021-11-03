@@ -57,9 +57,14 @@ impl Client {
 
     async fn insecure(
         project_name: impl Into<String>,
-        endpoint: String,
+        domain_name: String,
     ) -> Result<Client, Error> {
-        let channel = Channel::from_shared(endpoint)?
+        let tls_config = ClientTlsConfig::new()
+            .ca_certificate(Certificate::from_pem(TLS_CERTS))
+            .domain_name(&domain_name);
+
+        let channel = Channel::from_shared(format!("http://{}", domain_name))?
+            .tls_config(tls_config)?
             .connect()
             .await?;
 
