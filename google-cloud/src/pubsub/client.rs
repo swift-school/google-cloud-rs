@@ -22,9 +22,9 @@ pub struct Client {
 }
 
 impl Client {
-    pub(crate) const DOMAIN_NAME: &'static str = "pubsub.googleapis.com";
-    pub(crate) const ENDPOINT: &'static str = "https://pubsub.googleapis.com";
-    pub(crate) const SCOPES: [&'static str; 2] = [
+    const DOMAIN_NAME: &'static str = "pubsub.googleapis.com";
+    const ENDPOINT: &'static str = "https://pubsub.googleapis.com";
+    const SCOPES: [&'static str; 2] = [
         "https://www.googleapis.com/auth/cloud-platform",
         "https://www.googleapis.com/auth/pubsub",
     ];
@@ -44,6 +44,10 @@ impl Client {
     ///
     /// Credentials are looked up in the `GOOGLE_APPLICATION_CREDENTIALS` environment variable.
     pub async fn new(project_name: impl Into<String>) -> Result<Client, Error> {
+        if let Ok(host) = env::var("PUBSUB_EMULATOR_HOST") {
+            return Client::insecure(project_name, host).await
+        }
+
         let path = env::var("GOOGLE_APPLICATION_CREDENTIALS")?;
         let file = File::open(path)?;
         let creds = json::from_reader(file)?;
@@ -51,8 +55,25 @@ impl Client {
         Client::from_credentials(project_name, creds).await
     }
 
+    async fn insecure(
+        project_name: impl Into<String>,
+        endpoint: String,
+    ) -> Result<Client, Error> {
+        let channel = Channel::from_shared(endpoint)?
+            .connect()
+            .await?;
+
+        Ok(Client {
+            project_name: project_name.into(),
+            publisher: PublisherClient::new(channel.clone()),
+            subscriber: SubscriberClient::new(channel),
+            token_manager: Arc::new(Mutex::new(TokenManager::Insecure)),
+        })
+    }
+
     /// Create a new client for the specified project with custom credentials.
-    pub async fn from_credentials(
+    /// Allows creation of client without credentials, should not be called directly
+    async fn from_credentials(
         project_name: impl Into<String>,
         creds: ApplicationCredentials,
     ) -> Result<Client, Error> {

@@ -31,6 +31,9 @@ pub enum Error {
     /// authentication-related error.
     #[error("authentication error: {0}")]
     Auth(#[from] AuthError),
+    #[error("invalid uri error: {0}")]
+    /// conversion error from uri bytes
+    InvalidBytes(#[from] http::uri::InvalidUri),
 }
 
 /// The error type for value conversions.

@@ -51,11 +51,16 @@ pub(crate) struct Token {
 }
 
 #[derive(Debug, Clone)]
-pub(crate) struct TokenManager {
+pub(crate) struct TokenManagerSecure {
     client: Client<HttpsConnector<HttpConnector>>,
     scopes: String,
     creds: ApplicationCredentials,
     current_token: Option<Token>,
+}
+
+pub(crate) enum TokenManager {
+    Secure(TokenManagerSecure),
+    Insecure,
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -65,14 +70,23 @@ struct AuthResponse {
 
 impl TokenManager {
     pub(crate) fn new(creds: ApplicationCredentials, scopes: &[&str]) -> TokenManager {
-        TokenManager {
+        TokenManager::Secure(TokenManagerSecure {
             creds,
             client: Client::builder().build::<_, hyper::Body>(HttpsConnector::with_native_roots()),
             scopes: scopes.join(" "),
             current_token: None,
-        }
+        })
     }
 
+    pub(crate) async fn token(&mut self) -> Result<String, AuthError> {
+        match self {
+            TokenManager::Secure(t) => t.token().await,
+            TokenManager::Insecure => Ok(String::new()),
+        }
+    }
+}
+
+impl TokenManagerSecure {
     pub(crate) async fn token(&mut self) -> Result<String, AuthError> {
         let hour = chrono::Duration::minutes(45);
         let current_time = chrono::Utc::now();
